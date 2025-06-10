@@ -18,7 +18,7 @@ ENV DATABASE_URL=${DATABASE_URL}
 
 # Copy the rest of the application code
 COPY . .
-RUN ls -l ./scripts
+
 RUN chmod +x ./scripts/init-prisma.sh
 
 # Generate Prisma client
