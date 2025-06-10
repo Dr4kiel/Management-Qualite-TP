@@ -9,15 +9,17 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@prisma/client": "latest",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "@prisma/client": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
-    "typescript": "latest",
+    "@types/node": "24.0.0",
+    "@types/react": "19.1.7",
     "eslint": "latest",
     "eslint-config-next": "latest",
-    "prisma": "latest"
+    "prisma": "latest",
+    "typescript": "latest"
   }
 }
