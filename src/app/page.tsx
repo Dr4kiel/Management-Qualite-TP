@@ -1,3 +1,4 @@
+// src/app/page.tsx
 'use client';
 
 import { useState } from 'react';
@@ -8,7 +9,7 @@ import { useClientSearch } from '@/hooks/UseClientSearch';
 
 export default function Home() {
     const [recherche, setRecherche] = useState('');
-    const { clients, isLoading, searchClients } = useClientSearch();
+    const { clients, isLoading, error, searchClients } = useClientSearch();
 
     const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -16,8 +17,8 @@ export default function Home() {
     };
 
     return (
-        <main className="min-h-screen p-8">
-            <div className="max-w-4xl mx-auto">
+        <main>
+            <div className="container">
                 <PageTitle title="Recherche de Clients" />
                 <SearchBar
                     recherche={recherche}
@@ -25,6 +26,7 @@ export default function Home() {
                     onSubmit={handleSearch}
                     isLoading={isLoading}
                 />
+                {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
                 <SearchResults clients={clients} recherche={recherche} />
             </div>
         </main>
