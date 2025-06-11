@@ -68,3 +68,12 @@ tool:
           installers:
           - dependencyCheckInstaller:
               id: "12.1.3"
+              
+  sonarRunnerInstallation:
+    installations:
+    - name: "Default"
+      properties:
+      - installSource:
+          installers:
+          - sonarRunnerInstaller:
+              id: "7.1.0.4889"
