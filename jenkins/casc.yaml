@@ -18,6 +18,12 @@ unclassified:
     adminAddress: "admin@example.com"
     url: "http://jenkins:8080/"
 
+  globalNodeProperties:
+    - environmentVariables:
+        env:
+          - key: "NVD_API_KEY"
+            value: "${NVD_API_KEY}"
+
 credentials:
   system:
     domainCredentials:
