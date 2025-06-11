@@ -19,11 +19,11 @@ unclassified:
     url: "http://jenkins:8080/"
 
   gitHubConfiguration:
-    configs:
+    endpoints:
       - name: "GitHub"
         apiUrl: "https://api.github.com"
         credentialsId: "github-token"
-    hookUrl: "http://jenkins:8080/github-webhook/"
+        manageHooks: true
 
 credentials:
   system:
