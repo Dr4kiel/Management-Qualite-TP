@@ -1,14 +1,7 @@
-// src/hooks/useClientSearch.ts
 'use client';
 
 import { useState } from 'react';
-
-interface Client {
-    id: number;
-    nom: string;
-    email: string;
-    telephone: string;
-}
+import { Client } from '@/types/client';
 
 interface SearchResponse {
     status: string;
