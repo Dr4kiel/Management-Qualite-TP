@@ -42,7 +42,7 @@ pipeline {
                     sh 'docker-compose exec -T web npm install -g sonarqube-scanner'
                     sh '''
                         set -x
-                        docker-compose exec -T -e SONAR_TOKEN=$SONAR_TOKEN web sonarqube-scanner -Dsonar.login=$SONAR_TOKEN 2>&1
+                        docker-compose exec -T -e SONAR_TOKEN=$SONAR_TOKEN web sh -c "sonarqube-scanner -Dsonar.login=\$SONAR_TOKEN" 2>&1
                     '''
                 }
             }
