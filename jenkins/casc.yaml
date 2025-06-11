@@ -1,0 +1,57 @@
+jenkins:
+  systemMessage: "Jenkins auto-config via JCasC"
+  numExecutors: 2
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: admin
+          password: admin
+
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+
+unclassified:
+  location:
+    adminAddress: "admin@example.com"
+    url: "http://jenkins:8080/"
+
+  gitHubConfiguration:
+    configs:
+      - name: "GitHub"
+        apiUrl: "https://api.github.com"
+        credentialsId: "github-token"
+    hookUrl: "http://jenkins:8080/github-webhook/"
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - string:
+              id: "github-token"
+              description: "GitHub Token"
+              secret: "${GITHUB_TOKEN}"
+
+jobs:
+  - script: >
+      pipelineJob('nextjs-ci') {
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/Dr4kiel/Management-Qualite-TP.git')
+                 }
+                    branches('*/main', '*/develop')
+                 }
+            }
+            scriptPath('Jenkinsfile')
+          }
+          triggers {
+            scm('H/5 * * * *')
+            githubPush()
+          }
+        }
+      }

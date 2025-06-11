@@ -1,0 +1,6 @@
+docker-plugin
+docker-workflow
+workflow-aggregator
+git
+github
+github-branch-source
