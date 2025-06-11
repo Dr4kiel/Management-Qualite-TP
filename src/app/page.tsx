@@ -1,11 +1,11 @@
-// src/app/page.tsx
 'use client';
 
 import { useState } from 'react';
 import { PageTitle } from '@/components/PageTitle';
 import { SearchBar } from '@/components/SearchBar';
 import { SearchResults } from '@/components/SearchResults';
-import { useClientSearch } from '@/hooks/UseClientSearch';
+import { ClientForm } from '@/components/ClientForm';
+import { useClientSearch } from '@/hooks/useClientSearch';
 
 export default function Home() {
     const [recherche, setRecherche] = useState('');
@@ -16,10 +16,15 @@ export default function Home() {
         await searchClients(recherche);
     };
 
+    const handleClientAdded = () => {
+        searchClients(recherche); // Rafraîchit la liste après l'ajout
+    };
+
     return (
         <main>
             <div className="container">
-                <PageTitle title="Recherche de Clients" />
+                <PageTitle title="Gestion des Clients" />
+                <ClientForm onClientAdded={handleClientAdded} />
                 <SearchBar
                     recherche={recherche}
                     setRecherche={setRecherche}

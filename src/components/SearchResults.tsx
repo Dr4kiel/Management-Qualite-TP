@@ -1,12 +1,5 @@
-import styles from '@/app/styles/ClientsTable.module.css';
 import { ClientsTable } from './ClientsTable';
-
-interface Client {
-    id: number;
-    nom: string;
-    email: string;
-    telephone: string;
-}
+import { Client } from '@/types/client';
 
 interface SearchResultsProps {
     clients: Client[];
@@ -14,11 +7,19 @@ interface SearchResultsProps {
 }
 
 export const SearchResults = ({ clients, recherche }: SearchResultsProps) => {
+    if (clients.length === 0 && recherche) {
+        return (
+            <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+                <p>Aucun résultat trouvé pour "{recherche}"</p>
+            </div>
+        );
+    }
+
     if (clients.length === 0) {
         return (
-            <p className={styles.noResults}>
-                {recherche ? 'Aucun résultat trouvé' : 'Commencez votre recherche'}
-            </p>
+            <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+                <p>Veuillez effectuer une recherche</p>
+            </div>
         );
     }
 
