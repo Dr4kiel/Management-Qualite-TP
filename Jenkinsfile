@@ -41,7 +41,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
                     sh 'docker-compose exec -T web npm install -g sonarqube-scanner'
                     sh '''
-                        docker-compose exec -T web sonarqube-scanner \
+                        docker-compose exec -T -e SONAR_TOKEN=$SONAR_TOKEN web sonarqube-scanner \
                           -Dsonar.login=$SONAR_TOKEN
                     '''
                 }
