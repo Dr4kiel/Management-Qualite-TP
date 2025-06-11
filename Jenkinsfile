@@ -46,7 +46,6 @@ pipeline {
             steps {
                 dependencyCheck additionalArguments: '', 
                                 odcInstallation: 'Default', // ou le nom de l'installation configurée dans Jenkins
-                                scanPath: '.' // <-- Note the camelCase!
                 // Publication du rapport HTML
                 publishHTML(target: [
                     reportDir: 'dependency-check-report',
