@@ -46,13 +46,10 @@ pipeline {
             steps {
                 dependencyCheck additionalArguments: '', 
                                 odcInstallation: 'Default', // ou le nom de l'installation configurée dans Jenkins
-                                scanpath: '.', 
-                                outdir: 'owasp-report', 
-                                failBuildOnCVSS: '7', // seuil de blocage, optionnel
-                                datadir: ''
+                                scanPath: '.' // <-- Note the camelCase!
                 // Publication du rapport HTML
                 publishHTML(target: [
-                    reportDir: 'owasp-report',
+                    reportDir: 'dependency-check-report',
                     reportFiles: 'dependency-check-report.html',
                     reportName: 'OWASP Dependency-Check Report'
                 ])
