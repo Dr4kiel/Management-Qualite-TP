@@ -32,6 +32,10 @@ credentials:
               id: "github-token"
               description: "GitHub Token"
               secret: "${GITHUB_TOKEN}"
+          - string:
+              id: "SONAR_TOKEN"
+              description: "SonarQube Token"
+              secret: "${SONAR_TOKEN}"
 
 jobs:
   - script: >

@@ -36,12 +36,13 @@ pipeline {
                 sh 'echo "Integration tests placeholder"'
             }
         }
-        // stage('SonarQube Analysis') {
-        //     steps {
-        //         // Remplacez par la commande SonarQube adaptée à votre configuration
-        //         sh 'docker-compose exec -T web npx sonar-scanner'
-        //     }
-        // }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('Default') {
+                    sh 'docker-compose exec -T web npm run sonar'
+                }
+            }
+        }
         stage('OWASP Dependency-Check') {
             steps {
                 dependencyCheck odcInstallation: 'Default', additionalArguments: '--format HTML --out owasp-report'
