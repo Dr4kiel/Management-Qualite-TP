@@ -1,12 +1,14 @@
 import { ClientsTable } from './ClientsTable';
 import { Client } from '@/types/client';
+import {fetchClients} from "@/utils/fetchClients";
 
 interface SearchResultsProps {
     clients: Client[];
     recherche: string;
+    onRefresh: () => Promise<void>;
 }
 
-export const SearchResults = ({ clients, recherche }: SearchResultsProps) => {
+export const SearchResults = ({ clients, recherche, onRefresh }: SearchResultsProps) => {
     if (clients.length === 0 && recherche) {
         return (
             <div style={{ textAlign: 'center', marginTop: '2rem' }}>
@@ -23,5 +25,5 @@ export const SearchResults = ({ clients, recherche }: SearchResultsProps) => {
         );
     }
 
-    return <ClientsTable clients={clients} />;
+    return <ClientsTable clients={clients} onRefresh={onRefresh} />;
 };
