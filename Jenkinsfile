@@ -36,10 +36,14 @@ pipeline {
                 sh 'echo "Integration tests placeholder"'
             }
         }
-        stage('SonarQube Analysis') {
+        stage('SonarCloud Analysis') {
             steps {
-                withSonarQubeEnv('Default') {
-                    sh 'docker-compose exec -T web npm run sonar'
+                withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
+                    sh 'docker-compose exec -T web npm install -g sonarqube-scanner'
+                    sh '''
+                        docker-compose exec -T web sonarqube-scanner \
+                          -Dsonar.login=$SONAR_TOKEN
+                    '''
                 }
             }
         }
