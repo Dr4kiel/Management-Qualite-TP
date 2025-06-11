@@ -27,7 +27,7 @@ pipeline {
         // }
         stage('Unit Tests') {
             steps {
-                sh 'docker-compose exec web npm run test -- --coverage'
+                sh 'docker-compose exec -T web npm run test -- --coverage'
             }
         }
         stage('Integration Tests') {
@@ -39,7 +39,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 // Remplacez par la commande SonarQube adaptée à votre configuration
-                sh 'docker-compose exec web npx sonar-scanner'
+                sh 'docker-compose exec -T web npx sonar-scanner'
             }
         }
         stage('OWASP Dependency-Check') {
