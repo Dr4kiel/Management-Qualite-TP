@@ -15,6 +15,11 @@ pipeline {
                 sh 'docker-compose build'
             }
         }
+        stage('Start Services') {
+            steps {
+                sh 'docker-compose up -d'
+            }
+        }
         // stage('Lint') {
         //     steps {
         //         sh 'docker-compose run --rm web npm run lint'
@@ -22,7 +27,7 @@ pipeline {
         // }
         stage('Unit Tests') {
             steps {
-                sh 'docker-compose run --rm web npm run test -- --coverage'
+                sh 'docker-compose exec web npm run test -- --coverage'
             }
         }
         stage('Integration Tests') {
@@ -34,7 +39,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 // Remplacez par la commande SonarQube adaptée à votre configuration
-                sh 'docker-compose run --rm web npx sonar-scanner'
+                sh 'docker-compose exec web npx sonar-scanner'
             }
         }
         stage('OWASP Dependency-Check') {
@@ -54,7 +59,6 @@ pipeline {
                 ])
             }
         }
-        // Ajoutez d'autres étapes de test si nécessaire
     }
     post {
         failure {

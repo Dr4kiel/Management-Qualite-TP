@@ -18,13 +18,6 @@ unclassified:
     adminAddress: "admin@example.com"
     url: "http://jenkins:8080/"
 
-  gitHubConfiguration:
-    endpoints:
-      - name: "GitHub"
-        apiUrl: "https://api.github.com"
-        credentialsId: "github-token"
-        manageHooks: true
-
 credentials:
   system:
     domainCredentials:
