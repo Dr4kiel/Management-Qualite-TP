@@ -23,15 +23,6 @@ unclassified:
   location:
     adminAddress: "admin@example.com"
     url: "http://jenkins:8080/"
-  dependencyCheck:
-    odcInstallations:
-      - name: "Default"
-        homePath: "" # Laisser vide pour utiliser l'installation embarquée du plugin
-        dataDirectory: "" # Optionnel, dossier pour le cache local
-        suppressionFile: "" # Optionnel, chemin vers un fichier de suppression
-        additionalArguments: "" # Optionnel, arguments supplémentaires
-        autoUpdate: true # Mettre à false pour désactiver la mise à jour auto de la base
-        nvdApiKey: "${NVD_API_KEY}" # Utilise la variable d'environnement globale si définie
 
 credentials:
   system:
@@ -63,3 +54,13 @@ jobs:
           }
         }
       }
+
+tool:
+  dependency-check:
+    installations:
+    - name: "Default"
+      properties:
+      - installSource:
+          installers:
+          - dependencyCheckInstaller:
+              id: "12.1.3"
