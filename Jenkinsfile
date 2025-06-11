@@ -44,20 +44,24 @@ pipeline {
         // }
         stage('OWASP Dependency-Check') {
             steps {
-                sh 'mkdir -p owasp-report'
-                sh '''
-                docker run --rm -v "$(pwd):/src" owasp/dependency-check \
-                  --project "ManagementQualiteTP" \
-                  --scan /src \
-                  --format "HTML" \
-                  --out /src/owasp-report \
-                  --nvdApiKey $NVD_API_KEY
-                '''
-                // Publication du rapport HTML dans Jenkins
+                dependencyCheck additionalArguments: '', 
+                                odcInstallation: 'Default', // ou le nom de l'installation configurée dans Jenkins
+                                scanPath: '.', 
+                                outDir: 'owasp-report', 
+                                dataDir: '', 
+                                suppressionFile: '', 
+                                hintsFile: '', 
+                                failBuildOnCVSS: '7', // seuil de blocage, optionnel
+                                isAutoupdateDisabled: false, 
+                                includeCsvReports: false, 
+                                includeHtmlReports: true, 
+                                includeJsonReports: false, 
+                                includeVulnReports: false
+                // Publication du rapport HTML
                 publishHTML(target: [
-                  reportDir: 'owasp-report',
-                  reportFiles: 'dependency-check-report.html',
-                  reportName: 'OWASP Dependency-Check Report'
+                    reportDir: 'owasp-report',
+                    reportFiles: 'dependency-check-report.html',
+                    reportName: 'OWASP Dependency-Check Report'
                 ])
             }
         }

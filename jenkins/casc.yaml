@@ -13,16 +13,25 @@ jenkins:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
 
+  globalNodeProperties:
+    - envVars:
+        env:
+          - key: "NVD_API_KEY"
+            value: "${NVD_API_KEY}"
+
 unclassified:
   location:
     adminAddress: "admin@example.com"
     url: "http://jenkins:8080/"
-
-  globalNodeProperties:
-    - environmentVariables:
-        env:
-          - key: "NVD_API_KEY"
-            value: "${NVD_API_KEY}"
+  dependencyCheck:
+    odcInstallations:
+      - name: "Default"
+        homePath: "" # Laisser vide pour utiliser l'installation embarquée du plugin
+        dataDirectory: "" # Optionnel, dossier pour le cache local
+        suppressionFile: "" # Optionnel, chemin vers un fichier de suppression
+        additionalArguments: "" # Optionnel, arguments supplémentaires
+        autoUpdate: true # Mettre à false pour désactiver la mise à jour auto de la base
+        nvdApiKey: "${NVD_API_KEY}" # Utilise la variable d'environnement globale si définie
 
 credentials:
   system:
