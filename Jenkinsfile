@@ -44,11 +44,9 @@ pipeline {
         // }
         stage('OWASP Dependency-Check') {
             steps {
-                dependencyCheck additionalArguments: '', 
-                                odcInstallation: 'Default', // ou le nom de l'installation configurée dans Jenkins
-                // Publication du rapport HTML
+                dependencyCheck odcInstallation: 'Default', additionalArguments: '--format HTML --out owasp-report'
                 publishHTML(target: [
-                    reportDir: 'dependency-check-report',
+                    reportDir: 'owasp-report',
                     reportFiles: 'dependency-check-report.html',
                     reportName: 'OWASP Dependency-Check Report'
                 ])
