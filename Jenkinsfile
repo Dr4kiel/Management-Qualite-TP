@@ -17,8 +17,8 @@ pipeline {
         // }
         stage('Test') {
             steps {
-                sh 'docker-compose up -d'
-                sh 'docker-compose exec -T web npm run test'
+                sh 'npm install'
+                sh 'npm run test'
             }
         }
     }
