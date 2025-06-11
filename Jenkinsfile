@@ -50,7 +50,8 @@ pipeline {
                   --project "ManagementQualiteTP" \
                   --scan /src \
                   --format "HTML" \
-                  --out /src/owasp-report
+                  --out /src/owasp-report \
+                  --nvdApiKey $NVD_API_KEY
                 '''
                 // Publication du rapport HTML dans Jenkins
                 publishHTML(target: [
