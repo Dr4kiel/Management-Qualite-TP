@@ -77,7 +77,7 @@ volumes:
 
 ## 4. Scénarios de Détection de Bugs
 
-### Scénario 1
+### Résultats avec SonarQube
 -
 
 ### Scénario 2
