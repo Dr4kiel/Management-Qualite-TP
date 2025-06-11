@@ -19,13 +19,13 @@ ENV DATABASE_URL=${DATABASE_URL}
 # Copy the rest of the application code
 COPY . .
 
-RUN chmod +x ./scripts/init-prisma.sh
+RUN chmod +x ./scripts/init-prisma.sh \
 
 # Generate Prisma client
-RUN npx prisma generate
+&& npx prisma generate \
 
 # Build the Next.js application
-RUN npm run build
+&& npm run build
 
 # Expose the port the app runs on
 EXPOSE 3000
