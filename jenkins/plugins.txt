@@ -6,3 +6,4 @@ github
 github-branch-source
 configuration-as-code
 job-dsl
+html-publisher

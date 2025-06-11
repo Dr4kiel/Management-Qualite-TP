@@ -15,12 +15,46 @@ pipeline {
                 sh 'docker-compose build'
             }
         }
-        stage('Test') {
+        // stage('Lint') {
+        //     steps {
+        //         sh 'docker-compose run --rm web npm run lint'
+        //     }
+        // }
+        stage('Unit Tests') {
             steps {
-                sh 'docker-compose up -d'
-                sh 'docker-compose exec -T web npm run test'
+                sh 'docker-compose run --rm web npm run test -- --coverage'
             }
         }
+        stage('Integration Tests') {
+            steps {
+                // Ajoutez ici vos tests d'intégration si besoin
+                sh 'echo "Integration tests placeholder"'
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                // Remplacez par la commande SonarQube adaptée à votre configuration
+                sh 'docker-compose run --rm web npx sonar-scanner'
+            }
+        }
+        stage('OWASP Dependency-Check') {
+            steps {
+                sh '''
+                docker run --rm -v "$(pwd):/src" owasp/dependency-check \
+                  --project "ManagementQualiteTP" \
+                  --scan /src \
+                  --format "HTML" \
+                  --out /src/owasp-report
+                '''
+                // Publication du rapport HTML dans Jenkins
+                publishHTML(target: [
+                  reportDir: 'owasp-report',
+                  reportFiles: 'dependency-check-report.html',
+                  reportName: 'OWASP Dependency-Check Report'
+                ])
+            }
+        }
+        // Ajoutez d'autres étapes de test si nécessaire
     }
     post {
         failure {
