@@ -7,10 +7,7 @@ WORKDIR /app
 COPY package.json ./
 
 # Install dependencies
-RUN npm install --legacy-peer-deps \
-
-# Add Sonar Scanner permissions
-&& chmod +x node_modules/sonar-scanner/bin/sonar-scanner
+RUN npm install --legacy-peer-deps
 
 # Define build-time argument
 ARG DATABASE_URL
@@ -27,7 +24,7 @@ RUN chmod +x ./scripts/init-prisma.sh \
 && npx prisma generate \
 
 # Build the Next.js application
-RUN npm run build
+&& npm run build
 
 # Expose the port the app runs on
 EXPOSE 3000

@@ -38,10 +38,10 @@ pipeline {
         }
         stage('SonarCloud Analysis') {
             steps {
-                withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'SONAR_TOKEN')]) {
+                withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'TOKEN')]) {
                     sh 'docker-compose exec -T web npm install -g sonarqube-scanner'
                     sh '''
-                        docker-compose exec -T -e SONAR_TOKEN=$SONAR_TOKEN web sh -c "sonarqube-scanner -Dsonar.login=$SONAR_TOKEN"
+                        docker-compose exec -T web npx sonarqube-scanner -Dsonar.login=$TOKEN
                     '''
                 }
             }
