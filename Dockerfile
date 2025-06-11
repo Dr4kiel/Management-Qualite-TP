@@ -7,7 +7,10 @@ WORKDIR /app
 COPY package.json ./
 
 # Install dependencies
-RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps \
+
+# Add Sonar Scanner permissions
+&& chmod +x node_modules/sonar-scanner/bin/sonar-scanner
 
 # Define build-time argument
 ARG DATABASE_URL
