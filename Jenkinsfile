@@ -1,6 +1,15 @@
 pipeline {
     agent any
     stages {
+        stage('Prepare') {
+            steps {
+                script {
+                    if (!fileExists('./jenkins/jenkins.env')) {
+                        writeFile file: 'jenkins.env', text: ''
+                    }
+                }
+            }
+        }
         stage('Build') {
             steps {
                 sh 'docker-compose build'
