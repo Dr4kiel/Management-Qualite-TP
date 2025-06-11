@@ -4,8 +4,8 @@ pipeline {
         stage('Prepare') {
             steps {
                 script {
-                    if (!fileExists('jenkins.env')) {
-                        writeFile file: 'jenkins.env', text: ''
+                    if (!fileExists('jenkins/jenkins.env')) {
+                        writeFile file: 'jenkins/jenkins.env', text: ''
                     }
                 }
             }
