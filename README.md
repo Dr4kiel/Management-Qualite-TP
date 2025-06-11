@@ -11,3 +11,16 @@ Ce projet utilise Docker pour containeriser et faciliter le déploiement de l'ap
 - **Base de données** : PostgreSQL, orchestrée via Docker pour simplifier la gestion et l'intégration.
 
 L'ensemble du projet est orchestré à l'aide de fichiers de configuration Docker, permettant une mise en place rapide et reproductible de l'environnement de développement et de production.
+
+## Utilisation de Jenkins
+
+### Pré-Requis
+
+- Avoir un fichier `jenkins/jenkins.env` avec `GITHUB_TOKEN` pour l'accès au dépôt.
+
+### Utilisation avec docker-compose
+
+Pour lancer le conteneur Docker avec l'application, il suffit de lancer le profil :
+```sh
+docker-compose --profile jenkins up
+```

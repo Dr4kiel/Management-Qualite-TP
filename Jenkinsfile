@@ -1,6 +1,15 @@
 pipeline {
     agent any
     stages {
+        stage('Prepare') {
+            steps {
+                script {
+                    if (!fileExists('jenkins/jenkins.env')) {
+                        writeFile file: 'jenkins/jenkins.env', text: ''
+                    }
+                }
+            }
+        }
         stage('Build') {
             steps {
                 sh 'docker-compose build'
@@ -8,7 +17,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'docker-compose run --rm web npm run test'
+                sh 'docker-compose up -d'
+                sh 'docker-compose exec -T web npm run test'
             }
         }
     }
