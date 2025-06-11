@@ -44,6 +44,7 @@ pipeline {
         // }
         stage('OWASP Dependency-Check') {
             steps {
+                sh 'mkdir -p owasp-report'
                 sh '''
                 docker run --rm -v "$(pwd):/src" owasp/dependency-check \
                   --project "ManagementQualiteTP" \
