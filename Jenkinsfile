@@ -46,17 +46,10 @@ pipeline {
             steps {
                 dependencyCheck additionalArguments: '', 
                                 odcInstallation: 'Default', // ou le nom de l'installation configurée dans Jenkins
-                                scanPath: '.', 
-                                outDir: 'owasp-report', 
-                                dataDir: '', 
-                                suppressionFile: '', 
-                                hintsFile: '', 
+                                scanpath: '.', 
+                                outdir: 'owasp-report', 
                                 failBuildOnCVSS: '7', // seuil de blocage, optionnel
-                                isAutoupdateDisabled: false, 
-                                includeCsvReports: false, 
-                                includeHtmlReports: true, 
-                                includeJsonReports: false, 
-                                includeVulnReports: false
+                                datadir: ''
                 // Publication du rapport HTML
                 publishHTML(target: [
                     reportDir: 'owasp-report',
