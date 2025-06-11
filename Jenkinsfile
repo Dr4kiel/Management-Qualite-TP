@@ -10,14 +10,15 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
-            steps {
-                sh 'docker-compose build'
-            }
-        }
+        // stage('Build') {
+        //     steps {
+        //         sh 'docker-compose build'
+        //     }
+        // }
         stage('Test') {
             steps {
-                sh 'docker-compose run --rm web npm run test'
+                sh 'docker-compose up -d'
+                sh 'docker-compose exec -T web npm run test'
             }
         }
     }
