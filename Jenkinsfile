@@ -30,12 +30,6 @@ pipeline {
                 sh 'docker-compose exec -T web npm run test -- --coverage'
             }
         }
-        stage('Integration Tests') {
-            steps {
-                // Ajoutez ici vos tests d'intégration si besoin
-                sh 'echo "Integration tests placeholder"'
-            }
-        }
         stage('SonarCloud Analysis') {
             steps {
                 withCredentials([string(credentialsId: 'SONAR_TOKEN', variable: 'TOKEN')]) {

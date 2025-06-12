@@ -23,6 +23,16 @@ unclassified:
   location:
     adminAddress: "admin@example.com"
     url: "http://jenkins:8080/"
+  
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: false
+    installations:
+    - credentialsId: "SONAR_TOKEN"
+      name: "Default"
+      serverUrl: "https://sonarcloud.io/"
+      triggers:
+        skipScmCause: false
+        skipUpstreamCause: false
 
 credentials:
   system:
