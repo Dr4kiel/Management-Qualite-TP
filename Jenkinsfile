@@ -37,7 +37,7 @@ pipeline {
         }
         stage('OWASP Dependency-Check') {
             steps {
-                dependencyCheck odcInstallation: 'Default', additionalArguments: '--format HTML --out owasp-report --scan ./src/**/*.tsx --scan ./src/**/*.ts'
+                dependencyCheck odcInstallation: 'Default', additionalArguments: '--format HTML --out owasp-report'
                 publishHTML(target: [
                     reportDir: 'owasp-report',
                     reportFiles: 'dependency-check-report.html',
