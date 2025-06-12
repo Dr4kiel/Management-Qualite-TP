@@ -1,3 +1,5 @@
+'use client';
+import React from 'react';
 import { useState } from 'react';
 import { Client } from '@/types/client';
 import styles from '@/app/styles/ClientsTable.module.css';
