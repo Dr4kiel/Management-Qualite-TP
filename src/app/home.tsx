@@ -32,7 +32,9 @@ export default function Home() {
                     isLoading={isLoading}
                 />
                 {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
-                <SearchResults clients={clients} recherche={recherche} />
+                <SearchResults clients={clients} recherche={recherche} onRefresh={function (): Promise<void> {
+                    throw new Error('Function not implemented.');
+                }} isSubmitted={false} />
             </div>
         </main>
     );
