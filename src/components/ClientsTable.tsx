@@ -1,6 +1,5 @@
 'use client';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Client } from '@/types/client';
 import styles from '@/app/styles/ClientsTable.module.css';
 
@@ -29,12 +28,12 @@ export const ClientsTable = ({ clients, onRefresh }: ClientsTableProps) => {
         const form = e.currentTarget;
         const data = {
             id: editClient.id,
-            nom: (form.nom as any).value,
-            prenom: (form.prenom as any).value,
-            dateNaissance: (form.dateNaissance as any).value,
-            adresse: (form.adresse as any).value,
-            codePostal: (form.codePostal as any).value,
-            ville: (form.ville as any).value,
+            nom: form.nom.value,
+            prenom: form.prenom.value,
+            dateNaissance: form.dateNaissance.value,
+            adresse: form.adresse.value,
+            codePostal: form.codePostal.value,
+            ville: form.ville.value,
         };
         await fetch('/api/clients/search', {
             method: 'PUT',
