@@ -13,17 +13,26 @@ jenkins:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
 
+  globalNodeProperties:
+    - envVars:
+        env:
+          - key: "NVD_API_KEY"
+            value: "${NVD_API_KEY}"
+
 unclassified:
   location:
     adminAddress: "admin@example.com"
     url: "http://jenkins:8080/"
-
-  gitHubConfiguration:
-    endpoints:
-      - name: "GitHub"
-        apiUrl: "https://api.github.com"
-        credentialsId: "github-token"
-        manageHooks: true
+  
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: false
+    installations:
+    - credentialsId: "SONAR_TOKEN"
+      name: "Default"
+      serverUrl: "https://sonarcloud.io/"
+      triggers:
+        skipScmCause: false
+        skipUpstreamCause: false
 
 credentials:
   system:
@@ -33,6 +42,10 @@ credentials:
               id: "github-token"
               description: "GitHub Token"
               secret: "${GITHUB_TOKEN}"
+          - string:
+              id: "SONAR_TOKEN"
+              description: "SonarQube Token"
+              secret: "${SONAR_TOKEN}"
 
 jobs:
   - script: >
@@ -55,3 +68,22 @@ jobs:
           }
         }
       }
+
+tool:
+  dependency-check:
+    installations:
+    - name: "Default"
+      properties:
+      - installSource:
+          installers:
+          - dependencyCheckInstaller:
+              id: "12.1.3"
+              
+  sonarRunnerInstallation:
+    installations:
+    - name: "Default"
+      properties:
+      - installSource:
+          installers:
+          - sonarRunnerInstaller:
+              id: "7.1.0.4889"
