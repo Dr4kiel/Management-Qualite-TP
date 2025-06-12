@@ -1,6 +1,5 @@
-version: '3.8'
-
 services:
+
   web:
     build:
       context: .
@@ -11,6 +10,8 @@ services:
       DATABASE_URL: postgres://user:password@db:5432/mydatabase
     depends_on:
       - db
+    networks:
+      - ci-network
 
   db:
     image: postgres:latest
@@ -22,6 +23,36 @@ services:
       POSTGRES_DB: mydatabase
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ci-network
+
+  jenkins:
+    build:
+      context: ./jenkins
+      dockerfile: Dockerfile
+    user: root
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock # Permet à Jenkins d'utiliser Docker du host
+    environment:
+      JAVA_OPTS: -Djenkins.install.runSetupWizard=false
+    depends_on:
+      - web
+      - db
+    env_file:
+      - ./jenkins/jenkins.env
+    networks:
+      - ci-network
+    profiles:
+      - jenkins
 
 volumes:
   postgres_data:
+  jenkins_home:
+
+networks:
+  ci-network:
+    driver: bridge

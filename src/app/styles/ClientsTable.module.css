@@ -38,3 +38,31 @@
     padding: 2rem;
     color: #6b7280;
 }
+.editButton {
+    background-color: #fbbf24;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transition: background 0.2s;
+}
+.editButton:hover {
+    background-color: #f59e0b;
+}
+
+.deleteButton {
+    background-color: #ef4444;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.deleteButton:hover {
+    background-color: #b91c1c;
+}
