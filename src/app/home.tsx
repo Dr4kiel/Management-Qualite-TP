@@ -1,6 +1,5 @@
 'use client';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { PageTitle } from '@/components/PageTitle';
 import { SearchBar } from '@/components/SearchBar';
 import { SearchResults } from '@/components/SearchResults';
