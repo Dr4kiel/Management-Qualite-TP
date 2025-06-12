@@ -295,7 +295,45 @@ tool:
               id: "7.1.0.4889"
 ```
 
-## 4. Scénarios de Détection de Bugs
+## 4. Tests
+
+### Tests Unitaires
+
+
+#### Front-end
+Pour le front-end, nous avons mis en place des tests unitaires avec Jest et React Testing Library, principalement focalisés sur :
+
+- Les composants React isolés
+- Les fonctions utilitaires
+- La validation des formulaires
+- Le rendu conditionnel des éléments
+- Les interactions utilisateur basiques
+
+```typescript
+// Exemple de test d'un composant
+describe('Button Component', () => {
+  it('should render with correct text', () => {
+    render(<Button>Click me</Button>);
+    expect(screen.getByText('Click me')).toBeInTheDocument();
+  });
+});
+```
+
+#### Back-end
+Pour la partie back-end, les tests n'ont pas encore été implémentés car nous devons mettre en place une base de données de test séparée. Cela permettra d'éviter toute interférence avec la base de données de production. Cette séparation est cruciale pour :
+
+- Garantir l'intégrité des données de production
+- Permettre des tests destructifs sans impact
+- Assurer la reproductibilité des tests
+- Faciliter le développement en équipe sans conflit de données
+- Permettre des tests de performance et de charge sans affecter l'environnement de production
+- Assurer une isolation des tests pour une meilleure détection des bugs
+- Permettre des tests de migration de base de données sans risque
+
+La mise en place d'une base de données de test est planifiée pour la prochaine itération du projet.
+
+
+## 5. Scénarios de Détection de Bugs
 
 ### Résultats avec SonarQube
 <div align="center">
@@ -312,19 +350,19 @@ tool:
 ### Résultats avec OWASP
 
 
-## 5. Résultats
+## 6. Résultats
 
 -
 -
 -
 
-## 6. Axes d’Amélioration
+## 7. Axes d’Amélioration
 
--
+- Faire les test sur la partie back-end.
 -
 -
 
-## 7. Conclusions
+## 8. Conclusions
 
 -
 -
