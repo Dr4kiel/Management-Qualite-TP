@@ -12,13 +12,13 @@ describe('ClientForm Component', () => {
     it('affiche/cache le formulaire lors du clic sur le bouton', () => {
         render(<ClientForm onClientAdded={mockOnClientAdded} />);
 
-        expect(screen.queryByRole('form')).not.toBeInTheDocument();
+        expect(screen.queryByRole('client-form')).not.toBeInTheDocument();
 
         fireEvent.click(screen.getByText('Ajouter un client'));
-        expect(screen.getByRole('form')).toBeInTheDocument();
+        expect(screen.getByRole('client-form')).toBeInTheDocument();
 
         fireEvent.click(screen.getByText('Fermer'));
-        expect(screen.queryByRole('form')).not.toBeInTheDocument();
+        expect(screen.queryByRole('client-form')).not.toBeInTheDocument();
     });
 
     it('met à jour les champs du formulaire', () => {
@@ -58,7 +58,7 @@ describe('ClientForm Component', () => {
         fireEvent.change(screen.getByLabelText('Code postal'), { target: { value: testData.codePostal } });
         fireEvent.change(screen.getByLabelText('Ville'), { target: { value: testData.ville } });
 
-        fireEvent.submit(screen.getByRole('form'));
+        fireEvent.submit(screen.getByRole('client-form'));
 
         await waitFor(() => {
             expect(mockOnClientAdded).toHaveBeenCalled();
@@ -73,7 +73,7 @@ describe('ClientForm Component', () => {
         render(<ClientForm onClientAdded={mockOnClientAdded} />);
 
         fireEvent.click(screen.getByText('Ajouter un client'));
-        fireEvent.submit(screen.getByRole('form'));
+        fireEvent.submit(screen.getByRole('client-form'));
 
         await waitFor(() => {
             expect(screen.getByText(errorMessage)).toBeInTheDocument();
