@@ -2,7 +2,6 @@
 import React from 'react';
 import { ClientsTable } from './ClientsTable';
 import { Client } from '@/types/client';
-import {fetchClients} from "@/utils/fetchClients";
 
 interface SearchResultsProps {
     clients: Client[];
