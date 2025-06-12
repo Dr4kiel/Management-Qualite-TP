@@ -41,10 +41,6 @@ export async function POST(request: Request) {
     try {
         const body = await request.json();
 
-        console.log("start");
-        console.log(request);
-        console.log(body);
-
         const client = await prisma.client.create({
             data: {
                 nom: body.nom,
@@ -58,20 +54,73 @@ export async function POST(request: Request) {
             },
         });
 
-        console.log("Done");
-
         return NextResponse.json({
             status: 'success',
             data: client
         });
 
     } catch (error) {
-
-        console.log(error);
         return NextResponse.json(
             {
                 status: 'error',
                 message: 'Une erreur est survenue lors de la création du client'
+            },
+            { status: 500 }
+        );
+    }
+}
+
+export async function PUT(request: Request) {
+    try {
+        const body = await request.json();
+        const { id, ...data } = body;
+
+        const client = await prisma.client.update({
+            where: { id },
+            data: {
+                ...data,
+                dateNaissance: new Date(data.dateNaissance),
+                updatedAt: new Date(),
+            },
+        });
+
+        return NextResponse.json({
+            status: 'success',
+            data: client
+        });
+    } catch (error) {
+        return NextResponse.json(
+            {
+                status: 'error',
+                message: 'Erreur lors de la modification du client'
+            },
+            { status: 500 }
+        );
+    }
+}
+
+export async function DELETE(request: Request) {
+    try {
+        const { searchParams } = new URL(request.url);
+        const id = searchParams.get('id');
+
+        if (!id) {
+            return NextResponse.json(
+                { status: 'error', message: 'ID manquant' },
+                { status: 400 }
+            );
+        }
+
+        await prisma.client.delete({
+            where: { id: Number(id) },
+        });
+
+        return NextResponse.json({ status: 'success' });
+    } catch (error) {
+        return NextResponse.json(
+            {
+                status: 'error',
+                message: 'Erreur lors de la suppression du client'
             },
             { status: 500 }
         );
