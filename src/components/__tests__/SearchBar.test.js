@@ -1,61 +1,48 @@
-import renderer from 'react-test-renderer';
-import SearchBar from '../SearchBar';
-import { render, fireEvent, screen } from '@testing-library/react';
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { SearchBar } from '../SearchBar';
 
 describe('SearchBar Component', () => {
-    // Test du rendu avec react-test-renderer
-    it('changes the class when hovered', () => {
-        const component = renderer.create(
-            <SearchBar onSearch={() => {}} />
-        );
-        let tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
+    const mockSetRecherche = jest.fn();
+    const mockOnSubmit = jest.fn();
 
-        // Test du survol
-        renderer.act(() => {
-            tree.props.onMouseEnter();
-        });
-        tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
+    const defaultProps = {
+        recherche: '',
+        setRecherche: mockSetRecherche,
+        onSubmit: mockOnSubmit,
+        isLoading: false
+    };
 
-        // Test de la sortie du survol
-        renderer.act(() => {
-            tree.props.onMouseLeave();
-        });
-        tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
+    it('rend correctement la barre de recherche', () => {
+        render(<SearchBar {...defaultProps} />);
+
+        expect(screen.getByPlaceholderText('Rechercher un client...')).toBeInTheDocument();
+        expect(screen.getByRole('button')).toHaveTextContent('Rechercher');
     });
 
-    // Tests plus spécifiques avec @testing-library/react
-    it('should change button style on hover', () => {
-        render(<SearchBar onSearch={() => {}} />);
-        const searchButton = screen.getByRole('button');
+    it('gère la saisie de texte', () => {
+        render(<SearchBar {...defaultProps} />);
 
-        // Vérifie l'état initial
-        expect(searchButton).not.toHaveClass('hover');
+        const input = screen.getByPlaceholderText('Rechercher un client...');
+        fireEvent.change(input, { target: { value: 'test' } });
 
-        // Simule le survol
-        fireEvent.mouseEnter(searchButton);
-        expect(searchButton).toHaveClass('hover');
-
-        // Simule la sortie du survol
-        fireEvent.mouseLeave(searchButton);
-        expect(searchButton).not.toHaveClass('hover');
+        expect(mockSetRecherche).toHaveBeenCalledWith('test');
     });
 
-    it('should show hover effect on form submit button', () => {
-        render(<SearchBar onSearch={() => {}} />);
-        const form = screen.getByRole('search');
-        const searchButton = screen.getByRole('button');
+    it('gère la soumission du formulaire', () => {
+        render(<SearchBar {...defaultProps} />);
 
-        // Vérifie que le bouton est dans le formulaire
-        expect(form).toContainElement(searchButton);
+        const form = screen.getByTestId('search-form');
+        fireEvent.submit(form);
 
-        // Teste l'interaction au survol
-        fireEvent.mouseEnter(searchButton);
-        expect(searchButton).toHaveStyle({ opacity: '0.8' });
+        expect(mockOnSubmit).toHaveBeenCalled();
+    });
 
-        fireEvent.mouseLeave(searchButton);
-        expect(searchButton).toHaveStyle({ opacity: '1' });
+    it('affiche le bon état pendant le chargement', () => {
+        render(<SearchBar {...defaultProps} isLoading={true} />);
+
+        const button = screen.getByRole('button');
+        expect(button).toBeDisabled();
+        expect(button).toHaveTextContent('Recherche...');
     });
 });

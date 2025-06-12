@@ -1,4 +1,5 @@
 'use client';
+import React from 'react';
 import styles from '@/app/styles/SearchBar.module.css';
 import { BiSearch } from 'react-icons/bi';
 
@@ -11,7 +12,7 @@ interface SearchBarProps {
 
 export const SearchBar = ({ recherche, setRecherche, onSubmit, isLoading }: SearchBarProps) => {
     return (
-        <form onSubmit={onSubmit} className={styles.searchForm}>
+        <form onSubmit={onSubmit} className={styles.searchForm} data-testid="search-form">
             <div className={styles.searchContainer}>
                 <div className={styles.inputWrapper}>
                     <input
