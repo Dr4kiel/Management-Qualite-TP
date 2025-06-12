@@ -17,7 +17,7 @@ describe('SearchResults Component', () => {
     });
 
     it('affiche un message quand aucun résultat n\'est trouvé', () => {
-        render(<SearchResults clients={[]} recherche="test" />);
+        render(<SearchResults clients={[]} recherche="test" isSubmitted={true}/>);
         expect(screen.getByText('Aucun résultat trouvé pour "test"')).toBeInTheDocument();
     });
 

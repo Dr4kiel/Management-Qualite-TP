@@ -332,6 +332,14 @@ Pour la partie back-end, les tests n'ont pas encore été implémentés car nous
 
 La mise en place d'une base de données de test est planifiée pour la prochaine itération du projet.
 
+### Résultats des Tests
+
+<div align="center">
+  <img src="image-3.png" alt="Résultats Test" width="800"/>
+</div>
+- Sur cette image nous pouvons voir que tous les test front-end sont passés avec succès, ce qui indique que les composants fonctionnent comme prévu.
+- Ces test sont à executés lors d'une modification d'un composant pour vérifier que le composants n'a pas été cassé par la modification et ainsi ne pas avoir de régression.
+
 
 ## 5. Scénarios de Détection de Bugs
 
