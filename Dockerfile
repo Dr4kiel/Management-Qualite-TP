@@ -24,7 +24,7 @@ RUN chmod +x ./scripts/init-prisma.sh \
 && npx prisma generate \
 
 # Build the Next.js application
-RUN npm run build
+&& npm run build
 
 # Expose the port the app runs on
 EXPOSE 3000
