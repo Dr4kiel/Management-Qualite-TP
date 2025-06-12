@@ -339,6 +339,7 @@ La mise en place d'une base de données de test est planifiée pour la prochaine
 </div>
 - Sur cette image nous pouvons voir que tous les test front-end sont passés avec succès, ce qui indique que les composants fonctionnent comme prévu.
 - Ces test sont à executés lors d'une modification d'un composant pour vérifier que le composants n'a pas été cassé par la modification et ainsi ne pas avoir de régression.
+- On peut voir que notre poucentage de couverture est de 76.8% ce qui est un bon score pour un projet de cette taille. Cependant, nous visons à atteindre 80% de couverture dans les prochaines itérations.
 
 
 ## 5. Scénarios de Détection de Bugs
@@ -357,7 +358,12 @@ La mise en place d'une base de données de test est planifiée pour la prochaine
 
 ### Résultats avec OWASP
 
+Le but de l'analyse OWASP est de détecter les vulnérabilités connues dans les dépendances du projet. Nous avons utilisé le plugin OWASP Dependency Check dans Jenkins pour analyser les dépendances et générer un rapport.
+<div align="center">
+  <img src="image-4.png" alt="Résultats OWASP" width="800"/>
+</div>
 
+  
 ## 6. Résultats
 
 -
@@ -367,11 +373,11 @@ La mise en place d'une base de données de test est planifiée pour la prochaine
 ## 7. Axes d’Amélioration
 
 - Faire les test sur la partie back-end.
--
--
+- Améliorer la couverture des tests unitaires pour atteindre 80%.
+- Mettre en place un serveur Jenkins et SonarQube pour, à la fois alléger le projet, mais également de sorte à pouvoir réutiliser ces outils pour de futurs projets.
 
 ## 8. Conclusions
 
--
+- Les outils mis en place (Git, Jenkins, SonarQube, Docker, OWASP) ont permis d'automatiser le processus de développement et de garantir la qualité du code. Mais nous avons rencontrés quelques difficultés à mettre en place SonarQube et OWASP dans Jenkins.
 -
 -
