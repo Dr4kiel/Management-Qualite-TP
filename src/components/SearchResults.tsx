@@ -1,3 +1,5 @@
+'use client';
+import React from 'react';
 import { ClientsTable } from './ClientsTable';
 import { Client } from '@/types/client';
 
