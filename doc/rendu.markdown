@@ -5,7 +5,7 @@
 - **2024-2025**
 - **Sup De Vinci Rene - M1 DEV A**
 
-Github: [Dr4kiel/Management-Qualite-TP](https://github.com/Dr4kiel/Management-Qualite-TP/tree/V1.0)
+Github: [Dr4kiel/Management-Qualite-TP](https://github.com/Dr4kiel/Management-Qualite-TP/tree/V1.1)
 
 # Présentation des Résultats de la Démonstration
 
@@ -82,6 +82,9 @@ networks:
   ci-network:
     driver: bridge
 ```
+
+<div style="page-break-after: always;"></div>
+
 ## 2. Commentaires sur l’Organisation Technique
 
 - **Git :**
@@ -358,17 +361,20 @@ La mise en place d'une base de données de test est planifiée pour la prochaine
 
 ### Résultats avec OWASP
 
-Le but de l'analyse OWASP est de détecter les vulnérabilités connues dans les dépendances du projet. Nous avons utilisé le plugin OWASP Dependency Check dans Jenkins pour analyser les dépendances et générer un rapport.
 <div align="center">
   <img src="image-4.png" alt="Résultats OWASP" width="800"/>
 </div>
 
+- Nous avons utilisé OWASP Dependency Check pour analyser les dépendances de notre projet et détecter les vulnérabilités connues.
+- OWASP n'a pas détecte de vulnérabilités dans nos dépendances, ce qui est un bon signe de la qualité de notre gestion des dépendances.
+
   
 ## 6. Résultats
 
--
--
--
+- Les tests unitaires front-end ont été réussis à 100%, ce qui indique que les composants fonctionnent comme prévu.
+- La configuration de Jenkins a été mise en place avec succès, permettant l'automatisation des builds, des tests et de l'analyse de code.
+- SonarQube a détecté un grand nombre de problèmes dans le code, mais la majorité étaient liés au rapport généré d'OWASP. Le reste des problèmes ont été corrigés.
+- L'intégration de SonarQube et OWASP Dependency Check dans la pipeline Jenkins a été réussie, permettant une analyse continue de la qualité du code et des dépendances.
 
 ## 7. Axes d’Amélioration
 
@@ -376,8 +382,7 @@ Le but de l'analyse OWASP est de détecter les vulnérabilités connues dans les
 - Améliorer la couverture des tests unitaires pour atteindre 80%.
 - Mettre en place un serveur Jenkins et SonarQube pour, à la fois alléger le projet, mais également de sorte à pouvoir réutiliser ces outils pour de futurs projets.
 
-## 8. Conclusions
+## 8. Conclusion
 
 - Les outils mis en place (Git, Jenkins, SonarQube, Docker, OWASP) ont permis d'automatiser le processus de développement et de garantir la qualité du code. Mais nous avons rencontrés quelques difficultés à mettre en place SonarQube et OWASP dans Jenkins.
--
--
+- Il est primordial de fixer des objectifs de qualité et de sécurité dès le début du projet pour éviter les problèmes à long terme. Ce type de mise en place est à conserver pour les futurs projets.
