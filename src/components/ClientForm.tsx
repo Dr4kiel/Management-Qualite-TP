@@ -1,5 +1,5 @@
-// src/components/ClientForm.tsx
-import { useState } from 'react';
+'use client';
+import React, { useState } from 'react';
 import styles from '@/app/styles/ClientForm.module.css';
 import { Client } from '@/types/client';
 
@@ -68,7 +68,7 @@ export const ClientForm = ({ onClientAdded }: ClientFormProps) => {
             </button>
 
             {isOpen && (
-                <form onSubmit={handleSubmit} className={styles.form}>
+                <form onSubmit={handleSubmit} className={styles.form} role="client-form">
                     <div className={styles.formGrid}>
                         <div className={styles.formGroup}>
                             <label htmlFor="nom">Nom</label>

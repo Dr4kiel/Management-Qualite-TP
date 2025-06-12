@@ -20,11 +20,6 @@ pipeline {
                 sh 'docker-compose up -d'
             }
         }
-        // stage('Lint') {
-        //     steps {
-        //         sh 'docker-compose run --rm web npm run lint'
-        //     }
-        // }
         stage('Unit Tests') {
             steps {
                 sh 'docker-compose exec -T web npm run test -- --coverage'
