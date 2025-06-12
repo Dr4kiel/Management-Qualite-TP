@@ -1,5 +1,3 @@
-import { Client } from '../client';
-
 describe('Client Type', () => {
     it('valide la structure d\'un objet Client', () => {
         const mockClient = {

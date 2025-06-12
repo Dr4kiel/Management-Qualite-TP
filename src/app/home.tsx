@@ -1,5 +1,5 @@
 'use client';
-
+import React from 'react';
 import { useState } from 'react';
 import { PageTitle } from '@/components/PageTitle';
 import { SearchBar } from '@/components/SearchBar';
@@ -17,7 +17,7 @@ export default function Home() {
     };
 
     const handleClientAdded = () => {
-        searchClients(recherche); // Rafraîchit la liste après l'ajout
+        searchClients(recherche);
     };
 
     return (
