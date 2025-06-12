@@ -1,0 +1,85 @@
+.formContainer {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.addButton {
+    background-color: #2563eb;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: background 0.2s;
+}
+.addButton:hover {
+    background-color: #1d4ed8;
+}
+
+.form {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    color: #374151;
+}
+
+.formGroup input {
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 1rem;
+    background: #fff;
+}
+
+.submitButton {
+    margin-top: 1.5rem;
+    background-color: #059669;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    width: 100%;
+}
+.submitButton:disabled {
+    background: #a7f3d0;
+    cursor: not-allowed;
+}
+.submitButton:hover:not(:disabled) {
+    background-color: #047857;
+}
+
+.error {
+    color: #dc2626;
+    margin-top: 1rem;
+    font-weight: 500;
+    grid-column: 1 / -1;
+}

@@ -1,0 +1,68 @@
+.tableWrapper {
+    overflow-x: auto;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px var(--shadow-color);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tableHeader th {
+    background-color: #f9fafb;
+    padding: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #6b7280;
+}
+
+.tableRow {
+    border-top: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+}
+
+.tableRow:hover {
+    background-color: #f9fafb;
+}
+
+.tableCell {
+    padding: 1rem;
+}
+
+.noResults {
+    text-align: center;
+    padding: 2rem;
+    color: #6b7280;
+}
+.editButton {
+    background-color: #fbbf24;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    transition: background 0.2s;
+}
+.editButton:hover {
+    background-color: #f59e0b;
+}
+
+.deleteButton {
+    background-color: #ef4444;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.deleteButton:hover {
+    background-color: #b91c1c;
+}
