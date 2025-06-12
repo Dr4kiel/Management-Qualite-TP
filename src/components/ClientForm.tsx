@@ -1,6 +1,5 @@
 'use client';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styles from '@/app/styles/ClientForm.module.css';
 import { Client } from '@/types/client';
 
@@ -69,7 +68,7 @@ export const ClientForm = ({ onClientAdded }: ClientFormProps) => {
             </button>
 
             {isOpen && (
-                <form onSubmit={handleSubmit} className={styles.form} role="form">
+                <form onSubmit={handleSubmit} className={styles.form}>
                     <div className={styles.formGrid}>
                         <div className={styles.formGroup}>
                             <label htmlFor="nom">Nom</label>
